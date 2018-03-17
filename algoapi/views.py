@@ -6,10 +6,10 @@ import json
 
 # Create your views here.
 
-# def home(request):
-#     return render(request, 'algoapi/home.html', {})
-
 def home(request):
+    return render(request, 'algoapi/home.html', {})
+
+def shortroute(request):
     G = {'s': {'u': 9, 'x': 5},
          'u': {'v': 1, 'x': 2},
          'v': {'y': 4},
