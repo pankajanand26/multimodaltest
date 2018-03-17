@@ -1,1 +1,1 @@
-web: gunicorn randomblogr.wsgi --log-file -
+web: gunicorn multimodaltest.wsgi --log-file -
