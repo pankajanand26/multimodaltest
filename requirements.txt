@@ -1,0 +1,12 @@
+Django==1.11.5
+pytz==2017.2
+dj-database-url==0.3.0
+dj-static==0.0.6
+gunicorn==19.7.1
+Unipath==1.0
+python-decouple==3
+psycopg2==2.6.1
+Pillow==3.3.0
+Markdown==2.6.6
+bleach==1.4.3
+whitenoise==3.2
