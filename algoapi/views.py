@@ -22,13 +22,28 @@ def shortroute(request):
          'x': {'u': 3, 'v': 9, 'y': 2},
          'y': {'s': 7, 'v': 6}}
 
+    mode = {'s': {'u': 'bus', 'x': 'train'},
+         'u': {'v': 'walk', 'x': 'bus'},
+         'v': {'y': 'cab'},
+         'x': {'u': 'bus', 'v': 'cab', 'y': 'train'},
+         'y': {'s': 'cab', 'v': 'bus'}}
+
+
     (D,P)=dj.Dijkstra(G, origin)
     distances=json.dumps(D)
     prevvert=json.dumps(P)
+    path=dj.shortestPath(G, origin, destination)
+    path_mode=[]
+    for i in range(0,len(path)-1):
+        path_mode.append(mode[path[i]][path[i+1]])
+        # print(path[i + 1])
+        # print(mode[path[i]][path[i + 1]])
     # print(D)
     # print(dj.shortestPath(G, origin, destination))
-    route_details['path']=' '.join(dj.shortestPath(G, origin, destination))
+    # print(dj.shortestPath(G, origin, destination))
+    route_details['path']=' '.join(path)
     route_details['weight']=D[destination]
+    route_details['mode']=' '.join(path_mode)
     route_json=json.dumps(route_details)
     return HttpResponse(route_json)
     # return HttpResponse("Dijkstra: \nDistances: "+distances+"\nPrevious Vertex: "+prevvert+" Shortest Path is "+' '.join(dj.shortestPath(G, origin, destination))+"\n origin: "+origin+" dest: "+destination )
